@@ -24,7 +24,7 @@ export const personalInfo = {
     },
     linkedin: {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/sambhav-mehra',
+      url: 'https://www.linkedin.com/in/sambhav-mehra-484427359/',
       username: 'sambhav mehra'
     },
     portfolio: 'https://sambhav.me'

@@ -125,7 +125,7 @@ url: "https://sambhavmehra.me",
 jobTitle: "Cybersecurity Enthusiast",
 sameAs: [
 "https://github.com/sambhavmehra",
-"https://linkedin.com/in/sambhavmehra",
+"https://www.linkedin.com/in/sambhav-mehra-484427359",
 ],
 knowsAbout: [
 "Cybersecurity",

@@ -201,10 +201,10 @@ export default function Home() {
         <FloatingParticles />
         <CyberGrid />
 
-        {/* Hero Gradient Orbs */}
+        {/* Hero Gradient Orbs — Green Only */}
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[var(--matrix-green)]/10 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[var(--cyber-blue)]/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--neon-purple)]/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-[var(--matrix-green)]/8 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--matrix-green)]/5 rounded-full blur-[150px]" />
 
         <div className="max-w-7xl mx-auto w-full relative z-10">
           <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
@@ -331,21 +331,21 @@ export default function Home() {
               className="relative hidden lg:flex lg:col-span-2 justify-center items-center perspective-1000 mt-8 lg:mt-0"
             >
               <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg group lg:pl-4">
-                
-                {/* Dynamic Glowing Backdrop */}
+
+                {/* Green Glowing Backdrop */}
                 <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-[var(--matrix-green)] via-[var(--cyber-blue)] to-[var(--neon-purple)] rounded-3xl blur-[30px] sm:blur-[50px] opacity-30 group-hover:opacity-60 transition-opacity duration-1000"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  className="absolute -inset-1 bg-[var(--matrix-green)] rounded-3xl blur-[30px] sm:blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000"
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 />
 
                 {/* Main Terminal Card */}
                 <div className="relative w-full rounded-2xl bg-[#030303]/80 backdrop-blur-2xl border border-white/10 shadow-2xl overflow-hidden group-hover:border-[var(--matrix-green)]/40 transition-all duration-700"
-                     style={{ transformStyle: 'preserve-3d', transform: 'rotateY(-2deg) rotateX(2deg)' }}>
-                  
+                  style={{ transformStyle: 'preserve-3d', transform: 'rotateY(-2deg) rotateX(2deg)' }}>
+
                   {/* Decorative Scanline */}
                   <div className="absolute inset-0 scan-lines opacity-30 mix-blend-overlay pointer-events-none" />
-                  
+
                   {/* Glassmorphism Header */}
                   <div className="flex items-center justify-between px-3 sm:px-5 py-2.5 sm:py-3.5 bg-white/5 border-b border-white/10 relative z-10 backdrop-blur-md">
                     <div className="flex gap-1.5 sm:gap-2.5">
@@ -380,7 +380,7 @@ export default function Home() {
                       transition={{ delay: 2.5, duration: 0.5 }}
                     >
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[var(--matrix-green)] to-[var(--cyber-blue)] rounded-l-xl opacity-80" />
-                      
+
                       <div className="text-foreground/40 text-xs sm:text-[15px]">{'{\n'}</div>
                       <div className="pl-3 sm:pl-6 space-y-1.5 sm:space-y-2 text-xs sm:text-[15px] my-1">
                         {[
@@ -389,7 +389,7 @@ export default function Home() {
                           { key: 'focus', value: '"Penetration Testing"', valColor: 'text-[var(--neon-purple)]' },
                           { key: 'status', value: '"Active"', valColor: 'text-[var(--terminal-amber)]' }
                         ].map((item, idx) => (
-                          <motion.div 
+                          <motion.div
                             key={item.key}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -417,7 +417,7 @@ export default function Home() {
                     </div>
 
                     {/* Stats Grid */}
-                    <motion.div 
+                    <motion.div
                       className="grid grid-cols-2 gap-3 sm:gap-5"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -444,22 +444,22 @@ export default function Home() {
                 </div>
 
                 {/* Floating Badges */}
-                <motion.div 
-                   className="absolute -top-4 sm:-top-6 -right-2 sm:-right-4 bg-[#0a0a0a]/90 backdrop-blur-xl border border-[var(--matrix-green)]/50 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-[var(--matrix-green)]/20 shadow-xl flex items-center gap-1.5 sm:gap-2.5 z-20"
-                   animate={{ y: [0, -12, 0] }}
-                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                <motion.div
+                  className="absolute -top-4 sm:-top-6 -right-2 sm:-right-4 bg-[#0a0a0a]/90 backdrop-blur-xl border border-[var(--matrix-green)]/50 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl shadow-[var(--matrix-green)]/20 shadow-xl flex items-center gap-1.5 sm:gap-2.5 z-20"
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
-                   <Shield className="text-[var(--matrix-green)] drop-shadow-[0_0_5px_currentColor] w-4 h-4 sm:w-5 sm:h-5" />
-                   <span className="text-[var(--matrix-green)] font-extrabold text-xs sm:text-sm tracking-widest">CEH</span>
+                  <Shield className="text-[var(--matrix-green)] drop-shadow-[0_0_5px_currentColor] w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-[var(--matrix-green)] font-extrabold text-xs sm:text-sm tracking-widest">CEH</span>
                 </motion.div>
-                
-                <motion.div 
-                   className="absolute -bottom-6 sm:-bottom-8 -left-2 sm:-left-4 bg-[#0a0a0a]/90 backdrop-blur-xl border border-[var(--cyber-blue)]/50 px-3 sm:px-5 py-1.5 sm:py-2.5 flex items-center gap-1.5 sm:gap-2.5 rounded-xl sm:rounded-2xl shadow-[var(--cyber-blue)]/20 shadow-xl z-20"
-                   animate={{ y: [0, 10, 0] }}
-                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+
+                <motion.div
+                  className="absolute -bottom-6 sm:-bottom-8 -left-2 sm:-left-4 bg-[#0a0a0a]/90 backdrop-blur-xl border border-[var(--cyber-blue)]/50 px-3 sm:px-5 py-1.5 sm:py-2.5 flex items-center gap-1.5 sm:gap-2.5 rounded-xl sm:rounded-2xl shadow-[var(--cyber-blue)]/20 shadow-xl z-20"
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 >
-                   <Wifi className="text-[var(--cyber-blue)] drop-shadow-[0_0_5px_currentColor] w-4 h-4 sm:w-5 sm:h-5" />
-                   <span className="text-[var(--cyber-blue)] text-xs sm:text-sm font-extrabold tracking-widest">CCNA</span>
+                  <Wifi className="text-[var(--cyber-blue)] drop-shadow-[0_0_5px_currentColor] w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-[var(--cyber-blue)] text-xs sm:text-sm font-extrabold tracking-widest">CCNA</span>
                 </motion.div>
               </div>
             </motion.div>
