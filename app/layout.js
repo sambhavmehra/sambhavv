@@ -152,7 +152,8 @@ knowsAbout: [
     />
 
     {/* Structured Data */}
-    <script
+    <Script
+      id="schema-structured-data"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
