@@ -28,7 +28,7 @@ template: "%s | Sambhav Mehra",
 },
 
 description:
-"Sambhav Mehra is a cybersecurity enthusiast specializing in ethical hacking, penetration testing, vulnerability assessment, SIEM monitoring, and secure web applications.",
+"Sambhav Mehra is a cybersecurity enthusiast actively seeking internships, trainee positions, SOC analyst roles, vulnerability assessment roles, and entry-level penetration testing opportunities.",
 
 keywords: [
 "Sambhav Mehra",
@@ -56,15 +56,15 @@ creator: "Sambhav Mehra",
 publisher: "Sambhav Mehra",
 
 icons: {
-icon: "/favicon.ico",
-shortcut: "/favicon.ico",
+icon: "/favicon.svg",
+shortcut: "/favicon.svg",
 apple: "/logo.png",
 },
 
 openGraph: {
 title: "Sambhav Mehra | Cybersecurity Portfolio",
 description:
-"Explore cybersecurity projects including SIEM, IDS, AI-based vulnerability scanners, and ethical hacking tools by Sambhav Mehra.",
+"Explore the cybersecurity portfolio of Sambhav Mehra, showcasing threat analysis, penetration testing, and vulnerability assessment skills. Open to internships and entry-level roles.",
 url: "https://sambhavmehra.me",
 siteName: "Sambhav Mehra Portfolio",
 locale: "en_US",
@@ -83,7 +83,7 @@ twitter: {
 card: "summary_large_image",
 title: "Sambhav Mehra | Cybersecurity Portfolio",
 description:
-"Cybersecurity enthusiast focused on ethical hacking, penetration testing, SIEM, and secure development.",
+"Cybersecurity enthusiast actively seeking internships, trainee positions, SOC analyst roles, and entry-level penetration testing opportunities.",
 images: ["/logo.png"],
 },
 

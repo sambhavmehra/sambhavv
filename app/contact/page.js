@@ -54,7 +54,7 @@ export default function Contact() {
                         </h1>
                     </div>
                     <p className="text-xl text-foreground/60 max-w-2xl ml-16">
-                        Let's create something amazing together
+                        Available for cybersecurity internships, trainee roles, SOC analyst roles, and entry-level penetration testing opportunities.
                     </p>
                 </motion.div>
 
@@ -178,7 +178,7 @@ export default function Contact() {
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                     rows={6}
                                     className="w-full px-4 py-3 rounded-lg border border-white/10 bg-white/5 text-foreground placeholder:text-foreground/40 focus:border-[var(--matrix-green)]/50 focus:outline-none transition-all resize-none"
-                                    placeholder="Tell me about your project..."
+                                    placeholder="Tell me about the role or opportunity..."
                                     required
                                 />
                             </div>

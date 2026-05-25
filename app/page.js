@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useMotionValue, useTransform, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useCallback } from "react";
-import { ArrowRight, Code2, Shield, Lock, Server, Database, Zap, Terminal, Github, Linkedin, Mail, ExternalLink, Wifi, Bug, Eye, Fingerprint } from "lucide-react";
+import { ArrowRight, Code2, Shield, Lock, Server, Database, Zap, Terminal, Github, Linkedin, Mail, ExternalLink, Wifi, Bug, Eye, Fingerprint, FileText } from "lucide-react";
 import { personalInfo } from "./data/personal";
 import { projects } from "./data/projects";
 import Image from "next/image";
@@ -274,9 +274,7 @@ export default function Home() {
 
               {/* Description */}
               <motion.p variants={fadeIn} className="text-base sm:text-lg text-foreground/60 max-w-xl leading-relaxed mx-auto lg:mx-0">
-                To begin my career in cybersecurity with a forward-thinking organization, utilizing my skills
-                in ethical hacking and vulnerability assessment to learn, grow, and protect critical infrastructure
-                from evolving threats.
+                Actively seeking cybersecurity internships, trainee positions, SOC analyst roles, vulnerability assessment roles, and entry-level penetration testing opportunities to help protect critical infrastructure.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -286,18 +284,20 @@ export default function Home() {
                   className="group relative px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold overflow-hidden bg-gradient-to-r from-[var(--matrix-green)] to-[var(--cyber-blue)] hover:shadow-lg hover:shadow-[var(--matrix-green)]/25 transition-all duration-300 hover:scale-[1.03]"
                 >
                   <span className="relative flex items-center justify-center gap-2 text-black">
-                    Let's Connect
+                    Connect with Me
                     <ArrowRight size={20} className="group-hover:translate-x-1.5 transition-transform duration-300" />
                   </span>
                 </Link>
 
-                <Link
-                  href="/projects"
+                <a
+                  href={personalInfo.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold border-2 border-white/20 text-foreground hover:bg-white/5 hover:border-[var(--matrix-green)]/50 transition-all duration-300 inline-flex items-center justify-center gap-2 hover:scale-[1.03]"
                 >
-                  <Eye size={20} />
-                  View Work
-                </Link>
+                  <FileText size={20} />
+                  View Resume
+                </a>
               </motion.div>
 
               {/* Social Links */}
@@ -815,20 +815,19 @@ export default function Home() {
             <motion.div variants={fadeIn} className="mb-6">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--matrix-green)]/20 bg-[var(--matrix-green)]/5 text-[var(--matrix-green)] text-sm font-mono">
                 <Zap size={14} />
-                Ready to Collaborate
+                Open to Work
               </span>
             </motion.div>
 
             <motion.h2 variants={fadeIn} className="section-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6">
-              Let's Build Something{" "}
+              Looking for{" "}
               <span className="bg-gradient-to-r from-[var(--matrix-green)] to-[var(--cyber-blue)] bg-clip-text text-transparent">
-                Secure Together
+                Cybersecurity Opportunities
               </span>
             </motion.h2>
 
             <motion.p variants={fadeIn} className="text-base sm:text-lg text-foreground/60 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
-              I'm always interested in hearing about new security challenges, penetration testing opportunities,
-              and collaborative cybersecurity projects.
+              I am actively seeking cybersecurity internships, trainee roles, SOC analyst roles, vulnerability assessment roles, and entry-level penetration testing opportunities.
             </motion.p>
 
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -837,7 +836,7 @@ export default function Home() {
                 className="group px-8 py-4 rounded-xl font-semibold bg-gradient-to-r from-[var(--matrix-green)] to-[var(--cyber-blue)] text-black hover:shadow-lg hover:shadow-[var(--matrix-green)]/25 transition-all duration-300 hover:scale-[1.03] inline-flex items-center justify-center gap-2"
               >
                 <Mail size={20} />
-                Get in Touch
+                Contact Me
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>

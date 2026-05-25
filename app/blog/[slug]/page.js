@@ -42,8 +42,10 @@ export async function generateMetadata({ params }) {
     };
   }
 
+  const displayTitle = getDisplayTitle(post);
+
   return {
-    title: `${post.title} | Cyber Digest`,
+    title: `${displayTitle} | Cyber Digest`,
     description: post.excerpt,
     alternates: {
       canonical: `https://sambhavmehra.me/blog/${slug}`,
@@ -62,6 +64,13 @@ function formatDate(dateStr) {
   } catch (e) {
     return dateStr;
   }
+}
+
+function getDisplayTitle(post) {
+  if (post.title && post.title.includes("Daily Cyber Digest") && post.structured_content && post.structured_content.news_items && post.structured_content.news_items.length > 0) {
+    return post.structured_content.news_items[0].title;
+  }
+  return post.title;
 }
 
 export default async function BlogDetailPage({ params }) {
@@ -87,7 +96,7 @@ export default async function BlogDetailPage({ params }) {
           <ArrowLeft size={14} />
           <span>BACK TO BRIEFINGS</span>
         </Link>
-
+ 
         {/* Article Header */}
         <header className="border-b border-white/10 pb-8 mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -99,7 +108,7 @@ export default async function BlogDetailPage({ params }) {
             </span>
           </div>
           <h1 className="text-3xl font-bold font-mono text-foreground sm:text-4xl leading-tight">
-            {post.title}
+            {getDisplayTitle(post)}
           </h1>
         </header>
 

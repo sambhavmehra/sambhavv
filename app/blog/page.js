@@ -22,7 +22,7 @@ async function getBlogPosts() {
   try {
     const { data, error } = await supabase
       .from('blog_posts')
-      .select('id, title, slug, excerpt, category, published_date, source_links')
+      .select('id, title, slug, excerpt, category, published_date, source_links, structured_content')
       .order('published_date', { ascending: false });
 
     if (error) {
@@ -52,6 +52,13 @@ function formatDate(dateStr) {
   } catch (e) {
     return dateStr;
   }
+}
+
+function getDisplayTitle(post) {
+  if (post.title && post.title.includes("Daily Cyber Digest") && post.structured_content && post.structured_content.news_items && post.structured_content.news_items.length > 0) {
+    return post.structured_content.news_items[0].title;
+  }
+  return post.title;
 }
 
 export default async function BlogListingPage() {
@@ -102,7 +109,7 @@ export default async function BlogListingPage() {
                   {/* Title */}
                   <h2 className="text-xl font-bold font-mono text-foreground group-hover:text-[var(--matrix-green)] transition-colors mb-3 line-clamp-2">
                     <Link href={`/blog/${post.slug}`}>
-                      {post.title}
+                      {getDisplayTitle(post)}
                     </Link>
                   </h2>
 

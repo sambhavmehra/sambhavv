@@ -150,7 +150,7 @@ You must output a single JSON object. Do not include any markdown styling (like 
 
 JSON schema:
 {
-  "title": "Daily Cyber Digest: [Readable Date, e.g. May 25, 2026]",
+  "title": "A catchy, headline-style title summarizing the main security event/news of the day (e.g. 'Active Directory Zero-Day Exploited in the Wild' or 'Critical Ransomware Attack Disrupts Healthcare')",
   "excerpt": "A concise one-sentence summary of today's major cybersecurity updates.",
   "category": "Daily Digest",
   "structured_content": {
