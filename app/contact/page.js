@@ -142,7 +142,7 @@ export default function Contact() {
                         transition={{ delay: 0.3 }}
                     >
                         <h2 className="text-2xl font-bold text-foreground mb-6">Connect Online</h2>
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 gap-4">
                             {socialLinks.map((social) => {
                                 const Icon = iconMap[social.icon];
                                 return (

@@ -43,7 +43,7 @@ export const socialLinks = [
     id: 2,
     name: 'LinkedIn',
     icon: 'Linkedin',
-    url: 'https://linkedin.com/in/sambhav-mehra',
+    url: 'https://www.linkedin.com/in/sambhav-mehra-484427359/',
     username: 'sambhav mehra',
     color: 'blue'
   }
