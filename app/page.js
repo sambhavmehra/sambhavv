@@ -191,7 +191,43 @@ function CyberGrid() {
 /* HOME PAGE COMPONENT */
 /* ============================================ */
 export default function Home() {
-  const typingTexts = ["Ethical Hacker", "Penetration Tester", "Security Researcher", "Bug Hunter"];
+  const typingTexts = ["SOC Analyst L1", "Incident Coordinator", "SIEM & Threat Detection Specialist", "Security Automator"];
+
+  const [socLogs, setSocLogs] = useState([
+    { id: 1, time: "22:54:02", level: "INFO", msg: "Wazuh agent active on DB-Server", color: "text-[var(--matrix-green)]" },
+    { id: 2, time: "22:54:15", level: "SUCCESS", msg: "Suricata IDS: Ingesting syslog", color: "text-[var(--cyber-blue)]" },
+    { id: 3, time: "22:54:38", level: "ALERT", msg: "DDoS T1498 detected & mitigated", color: "text-red-500" },
+  ]);
+
+  useEffect(() => {
+    const templates = [
+      { level: "INFO", msg: "Log ingestion active: 412 EPS", color: "text-[var(--matrix-green)]" },
+      { level: "ALERT", msg: "Brute-force T1110: IP blocked", color: "text-red-500" },
+      { level: "WARNING", msg: "HTTP anomalies on port 443", color: "text-[var(--terminal-amber)]" },
+      { level: "INFO", msg: "SOAR: Incident created in JIRA", color: "text-[var(--cyber-blue)]" },
+      { level: "SUCCESS", msg: "IOC lookup completed on VirusTotal", color: "text-emerald-400" },
+      { level: "ALERT", msg: "Suspicious API activity flagged", color: "text-red-400" }
+    ];
+
+    const interval = setInterval(() => {
+      setSocLogs(prev => {
+        const nextId = prev.length ? prev[prev.length - 1].id + 1 : 1;
+        const now = new Date();
+        const timeStr = now.toTimeString().split(' ')[0];
+        const template = templates[Math.floor(Math.random() * templates.length)];
+        const newLog = {
+          id: nextId,
+          time: timeStr,
+          level: template.level,
+          msg: template.msg,
+          color: template.color
+        };
+        return [...prev.slice(1), newLog];
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative min-h-screen">
@@ -385,9 +421,9 @@ export default function Home() {
                       <div className="pl-3 sm:pl-6 space-y-1.5 sm:space-y-2 text-xs sm:text-[15px] my-1">
                         {[
                           { key: 'name', value: '"Sambhav Mehra"', valColor: 'text-[var(--matrix-green)]' },
-                          { key: 'role', value: '"Ethical Hacker"', valColor: 'text-[var(--cyber-blue)]' },
-                          { key: 'focus', value: '"Penetration Testing"', valColor: 'text-[var(--neon-purple)]' },
-                          { key: 'status', value: '"Active"', valColor: 'text-[var(--terminal-amber)]' }
+                          { key: 'role', value: '"SOC Analyst L1"', valColor: 'text-[var(--cyber-blue)]' },
+                          { key: 'focus', value: '"SIEM & Threat Detection"', valColor: 'text-[var(--neon-purple)]' },
+                          { key: 'status', value: '"Open to Work"', valColor: 'text-[var(--terminal-amber)]' }
                         ].map((item, idx) => (
                           <motion.div
                             key={item.key}
@@ -517,7 +553,7 @@ export default function Home() {
 
           {/* Bento Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 sm:gap-6">
-            {/* Large Card - Ethical Hacking */}
+            {/* Large Card - SOC Operations & Threat Detection */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -532,38 +568,94 @@ export default function Home() {
                 transition={{ duration: 6, repeat: Infinity }}
               />
 
-              <div className="relative z-10">
-                <motion.div
-                  className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-gradient-to-br from-[var(--matrix-green)] to-[var(--cyber-blue)] p-[2px] mb-5 sm:mb-6"
-                  whileHover={{ rotate: 10, scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
-                    <Shield size={28} className="text-[var(--matrix-green)]" />
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                {/* Left side info */}
+                <div className="lg:col-span-7 space-y-4">
+                  <motion.div
+                    className="w-14 sm:w-16 h-14 sm:h-16 rounded-2xl bg-gradient-to-br from-[var(--matrix-green)] to-[var(--cyber-blue)] p-[2px]"
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
+                      <Shield size={28} className="text-[var(--matrix-green)]" />
+                    </div>
+                  </motion.div>
+
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground group-hover:text-[var(--matrix-green)] transition-colors duration-300">
+                    SOC Operations & Threat Detection
+                  </h3>
+                  <p className="text-base sm:text-lg text-foreground/60 leading-relaxed">
+                    Proficient in log ingestion, alert triage, incident investigation, and threat hunting. Experience engineering custom IDS/SIEM pipelines using Wazuh, Sentinel, and Suricata, with all alerts mapped to the MITRE ATT&CK framework.
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {['Microsoft Sentinel', 'Wazuh', 'Splunk', 'IDS/IPS', 'Suricata', 'MITRE ATT&CK', 'Log Analysis', 'Incident Response'].map((tech, i) => (
+                      <motion.span
+                        key={tech}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05 }}
+                        className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm hover:border-[var(--matrix-green)]/40 hover:bg-[var(--matrix-green)]/5 transition-all duration-300 cursor-default"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
                   </div>
-                </motion.div>
+                </div>
 
-                <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 sm:mb-4 group-hover:text-[var(--matrix-green)] transition-colors duration-300">
-                  Ethical Hacking & Penetration Testing
-                </h3>
-                <p className="text-base sm:text-lg text-foreground/60 leading-relaxed mb-5 sm:mb-6">
-                  Ethical Hacker with expertise in vulnerability assessment, penetration testing,
-                  and security auditing. Proficient in using industry-standard tools to identify and mitigate security threats.
-                </p>
+                {/* Right side live monitoring console panel */}
+                <div className="lg:col-span-5 w-full">
+                  <div className="w-full bg-[#050505]/95 border border-[var(--matrix-green)]/30 rounded-2xl p-4 font-mono text-xs relative overflow-hidden group-hover:border-[var(--matrix-green)]/60 transition-colors duration-500 shadow-2xl">
+                    {/* Header */}
+                    <div className="flex items-center justify-between border-b border-white/10 pb-2 mb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--matrix-green)] opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--matrix-green)]"></span>
+                        </span>
+                        <span className="text-[var(--matrix-green)] font-bold tracking-wider text-[10px] uppercase">SOC Monitor [Live]</span>
+                      </div>
+                      <span className="text-[9px] text-foreground/40">SYS_ID: 8940-SOC</span>
+                    </div>
 
-                <div className="flex flex-wrap gap-2">
-                  {['Nmap', 'Metasploit', 'BurpSuite', 'Wireshark', 'OWASP Top 10', 'Linux'].map((tech, i) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.05 }}
-                      className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs sm:text-sm hover:border-[var(--matrix-green)]/40 hover:bg-[var(--matrix-green)]/5 transition-all duration-300 cursor-default"
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
+                    {/* Metrics Dashboard */}
+                    <div className="grid grid-cols-3 gap-2 mb-3 text-[10px] border-b border-white/5 pb-2.5">
+                      <div className="text-center p-1 bg-white/5 rounded border border-white/5">
+                        <div className="text-foreground/40 uppercase text-[8px] font-bold">EPS Ingest</div>
+                        <div className="text-[var(--matrix-green)] font-black text-xs mt-0.5">380+</div>
+                      </div>
+                      <div className="text-center p-1 bg-white/5 rounded border border-white/5">
+                        <div className="text-foreground/40 uppercase text-[8px] font-bold">Alerts (24h)</div>
+                        <div className="text-[var(--cyber-blue)] font-black text-xs mt-0.5">14</div>
+                      </div>
+                      <div className="text-center p-1 bg-white/5 rounded border border-white/5">
+                        <div className="text-foreground/40 uppercase text-[8px] font-bold">SOAR Auto</div>
+                        <div className="text-[var(--terminal-amber)] font-black text-xs mt-0.5">100%</div>
+                      </div>
+                    </div>
+
+                    {/* Live logs */}
+                    <div className="space-y-2 h-[120px] overflow-hidden flex flex-col justify-end">
+                      {socLogs.map((log) => (
+                        <motion.div
+                          key={log.id}
+                          initial={{ opacity: 0, x: -10, y: 5 }}
+                          animate={{ opacity: 1, x: 0, y: 0 }}
+                          className="flex items-start gap-1.5 leading-relaxed text-[11px]"
+                        >
+                          <span className="text-foreground/30 font-semibold">{log.time}</span>
+                          <span className={`font-bold ${log.color} text-[10px] border border-current/25 px-1 rounded scale-[0.9] origin-left uppercase`}>
+                            {log.level}
+                          </span>
+                          <span className="text-foreground/70 break-words flex-1">{log.msg}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Scanline overlay */}
+                    <div className="absolute inset-0 scan-lines opacity-10 pointer-events-none" />
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -594,12 +686,12 @@ export default function Home() {
                   Network Security
                 </h3>
                 <p className="text-sm sm:text-base text-foreground/60 leading-relaxed">
-                  CCNA certified with strong knowledge of TCP/IP, DHCP, Firewalls, and network infrastructure security.
+                  CCNA certified with strong knowledge of TCP/IP, DNS, DHCP, firewall rules, and packet analysis using Wireshark and Nmap.
                 </p>
               </div>
             </motion.div>
 
-            {/* Medium Card - SIEM */}
+            {/* Medium Card - Incident Response & SOAR */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -617,20 +709,20 @@ export default function Home() {
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
-                    <Eye size={24} className="text-[var(--terminal-amber)]" />
+                    <Zap size={24} className="text-[var(--terminal-amber)]" />
                   </div>
                 </motion.div>
 
                 <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3 group-hover:text-[var(--terminal-amber)] transition-colors duration-300">
-                  SIEM & Monitoring
+                  Incident Response & SOAR
                 </h3>
                 <p className="text-sm sm:text-base text-foreground/60 leading-relaxed">
-                  Experience with Sentinel SIEM and KQL for threat detection and security monitoring.
+                  Building automated playbooks with n8n, integrating cases in TheHive, managing incidents in JIRA, and enriching threats using VirusTotal.
                 </p>
               </div>
             </motion.div>
 
-            {/* Wide Card - Web Security */}
+            {/* Wide Card - Ethical Hacking & Pentesting */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -650,13 +742,13 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 group-hover:text-[var(--matrix-green)] transition-colors duration-300">Web Security & Development</h3>
-                  <p className="text-xs sm:text-sm text-foreground/60">HTML, CSS, JavaScript, React, Flask, OWASP</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 group-hover:text-[var(--matrix-green)] transition-colors duration-300">Ethical Hacking & Pentesting</h3>
+                  <p className="text-xs sm:text-sm text-foreground/60">Metasploit, Burp Suite, OWASP ZAP, Nmap, OSINT, Vulnerability Analysis</p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Wide Card - Programming */}
+            {/* Wide Card - Programming & Automation */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -676,8 +768,8 @@ export default function Home() {
                   </div>
                 </motion.div>
                 <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 group-hover:text-[var(--cyber-blue)] transition-colors duration-300">Programming & Databases</h3>
-                  <p className="text-xs sm:text-sm text-foreground/60">Python, C++, C, SQL, KQL, Git & GitHub</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 group-hover:text-[var(--cyber-blue)] transition-colors duration-300">Programming & Automation</h3>
+                  <p className="text-xs sm:text-sm text-foreground/60">Python, Bash scripting, C++, SQL, Git, Docker, n8n</p>
                 </div>
               </div>
             </motion.div>
@@ -718,20 +810,21 @@ export default function Home() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {projects.filter(p => p.featured).map((project, index) => (
-              <Link href="/projects" passHref key={project.id}>
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.15 }}
-                  variants={fadeIn}
-                  transition={{ delay: index * 0.12 }}
-                  whileHover={{ y: -8 }}
-                  className="group h-full relative rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-[var(--matrix-green)]/50 transition-all duration-500 cursor-pointer block backdrop-blur-sm"
-                >
+            {projects.filter(p => p.featured).slice(0, 3).map((project, index) => (
+              <motion.div
+                key={project.id}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                variants={fadeIn}
+                transition={{ delay: index * 0.12 }}
+                whileHover={{ y: -8 }}
+                className="group h-full flex flex-col justify-between relative rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden hover:border-[var(--matrix-green)]/50 transition-all duration-500 backdrop-blur-sm"
+              >
+                <div>
                   {/* Image */}
                   {project.image && (
-                    <div className="relative h-44 sm:h-48 overflow-hidden bg-black/50">
+                    <div className="relative h-44 sm:h-48 overflow-hidden bg-black/50 border-b border-white/5">
                       <Image
                         src={project.image}
                         alt={project.title}
@@ -739,25 +832,17 @@ export default function Home() {
                         className="object-cover group-hover:scale-110 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent"></div>
-
-                      {/* Hover overlay */}
-                      <div className="absolute inset-0 bg-[var(--matrix-green)]/0 group-hover:bg-[var(--matrix-green)]/5 transition-all duration-500 flex items-center justify-center">
-                        <motion.div
-                          className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                          initial={false}
-                        >
-                          <ExternalLink size={32} className="text-white drop-shadow-lg" />
-                        </motion.div>
-                      </div>
                     </div>
                   )}
 
                   {/* Content */}
                   <div className="p-5 sm:p-6">
                     <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-[var(--matrix-green)] transition-colors duration-300">
-                      {project.title}
+                      <Link href="/projects">
+                        {project.title}
+                      </Link>
                     </h3>
-                    <p className="text-xs sm:text-sm text-foreground/60 mb-4 line-clamp-2">
+                    <p className="text-xs sm:text-sm text-foreground/60 mb-4 line-clamp-3 leading-relaxed">
                       {project.description}
                     </p>
 
@@ -769,18 +854,31 @@ export default function Home() {
                         </span>
                       ))}
                     </div>
-
-                    {/* Links */}
-                    <div className="flex gap-3">
-                      {project.demo && (
-                        <span className="flex items-center gap-2 text-xs sm:text-sm text-[var(--matrix-green)] group-hover:gap-3 transition-all">
-                          Live Demo <ExternalLink size={14} />
-                        </span>
-                      )}
-                    </div>
                   </div>
-                </motion.div>
-              </Link>
+                </div>
+
+                {/* Card Footer Links */}
+                <div className="p-5 sm:p-6 pt-0 flex gap-4 mt-auto">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-2 px-3 rounded-lg border border-white/10 hover:border-[var(--matrix-green)]/40 hover:bg-[var(--matrix-green)]/[0.02] text-foreground font-semibold text-xs transition-all duration-300 flex items-center justify-center gap-1.5"
+                    >
+                      <Github size={14} />
+                      <span>Code</span>
+                    </a>
+                  )}
+                  <Link
+                    href="/projects"
+                    className="flex-1 py-2 px-3 rounded-lg bg-gradient-to-r from-[var(--matrix-green)]/10 to-[var(--cyber-blue)]/10 hover:from-[var(--matrix-green)]/20 hover:to-[var(--cyber-blue)]/20 text-[var(--matrix-green)] border border-[var(--matrix-green)]/20 font-semibold text-xs flex items-center justify-center gap-1.5 transition-all duration-300"
+                  >
+                    <span>Analyze</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </motion.div>
             ))}
           </div>
 

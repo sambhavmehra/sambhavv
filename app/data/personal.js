@@ -1,6 +1,6 @@
 export const personalInfo = {
   name: 'Sambhav Mehra',
-  title: 'Cybersecurity Enthusiast & Ethical Hacker',
+  title: 'SOC Analyst L1 | Incident Coordinator | SIEM & Threat Detection',
   email: 'sambhavvmehra07@gmail.com',
   phone: '+91 9993016789',
   location: {
