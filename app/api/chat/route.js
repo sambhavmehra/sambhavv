@@ -21,7 +21,7 @@ Projects:
 4. SOAR SOC Assistant: Platform for SOC teams with virtual assistant, automated response, and threat blocking.
 5. Secure Electronic Health Records (SEHR): Blockchain-based system for patients to store/share medical records securely.
 If someone asks about projects, list them or describe the requested one fully. He built these security projects to demonstrate practical knowledge of cybersecurity concepts and tools.
-Provide his email (sambhavvmehra07@gmail.com), GitHub (@sambhavmehra), LinkedIn (sambhav mehra), and phone (+91 9993016789) if they ask how to contact him. Let recruiters know he is open to hiring opportunities.
+Provide his email (sambhavmehra07@gmail.com), GitHub (@sambhavmehra), LinkedIn (sambhav mehra), and phone (+91 9993016789) if they ask how to contact him. Let recruiters know he is open to hiring opportunities.
 Always be concise, professional, and helpful.`
     };
 

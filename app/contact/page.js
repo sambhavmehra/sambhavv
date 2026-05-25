@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { contactInfo, socialLinks } from "../data/contact";
 import { Mail, MapPin, Phone, Send, Github, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import { toast } from "react-toastify";
 
 const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -25,15 +26,50 @@ export default function Contact() {
         email: '',
         message: ''
     });
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-        const body = encodeURIComponent(`${formData.message}\n\nFrom: ${formData.name} (${formData.email})`);
-        window.location.href = `mailto:sambhavvmehra07@gmail.com?subject=${subject}&body=${body}`;
-        
-        // Optional: clear the form
-        setFormData({ name: '', email: '', message: '' });
+        setLoading(true);
+        const toastId = toast.loading("Sending your message...");
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+                toast.update(toastId, {
+                    render: "Message sent successfully!",
+                    type: "success",
+                    isLoading: false,
+                    autoClose: 3000,
+                });
+                setFormData({ name: '', email: '', message: '' });
+            } else {
+                toast.update(toastId, {
+                    render: data.error || "Failed to send message. Please try again.",
+                    type: "error",
+                    isLoading: false,
+                    autoClose: 3000,
+                });
+            }
+        } catch (error) {
+            console.error("Error submitting contact form:", error);
+            toast.update(toastId, {
+                render: "An error occurred. Please try again later.",
+                type: "error",
+                isLoading: false,
+                autoClose: 3000,
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -185,10 +221,20 @@ export default function Contact() {
 
                             <button
                                 type="submit"
-                                className="px-8 py-4 rounded-lg font-semibold bg-gradient-to-r from-[var(--matrix-green)] to-[var(--cyber-blue)] text-black hover:opacity-90 transition-all inline-flex items-center gap-2"
+                                disabled={loading}
+                                className="px-8 py-4 rounded-lg font-semibold bg-gradient-to-r from-[var(--matrix-green)] to-[var(--cyber-blue)] text-black hover:opacity-90 transition-all inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                <Send size={20} />
-                                Send Message
+                                {loading ? (
+                                    <>
+                                        <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                                        Sending...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send size={20} />
+                                        Send Message
+                                    </>
+                                )}
                             </button>
                         </form>
                     </motion.div>

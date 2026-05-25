@@ -7,8 +7,8 @@ export const contactInfo = [
     icon: 'Mail',
     iconColor: 'blue',
     title: 'Email',
-    value: 'sambhavvmehra07@gmail.com',
-    href: 'mailto:sambhavvmehra07@gmail.com'
+    value: 'sambhavmehra07@gmail.com',
+    href: 'mailto:sambhavmehra07@gmail.com'
   },
   {
     id: 2,
