@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { motion, useMotionValue, useTransform, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useCallback } from "react";
-import { ArrowRight, Code2, Shield, Lock, Server, Database, Zap, Terminal, Github, Linkedin, Mail, ExternalLink, Wifi, Bug, Eye, Fingerprint, FileText } from "lucide-react";
+import { ArrowRight, Code2, Shield, Lock, Server, Database, Zap, Terminal, Github, Linkedin, Mail, ExternalLink, Wifi, Bug, Eye, Fingerprint, FileText, Download } from "lucide-react";
 import { personalInfo } from "./data/personal";
 import { projects } from "./data/projects";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 /* ============================================ */
 /* ANIMATION VARIANTS */
@@ -192,6 +193,50 @@ function CyberGrid() {
 /* ============================================ */
 export default function Home() {
   const typingTexts = ["SOC Analyst L1", "Incident Coordinator", "SIEM & Threat Detection Specialist", "Security Automator"];
+
+  const downloadJSON = () => {
+    const data = {
+      name: "Sambhav Mehra",
+      role: "SOC Analyst L1",
+      focus: "SIEM & Threat Detection",
+      status: "Open to Work",
+      skills: {
+        security: ['Ethical Hacking', 'Penetration Testing', 'Vulnerability Assessment', 'SIEM Monitoring', 'OWASP Top 10', 'IDS/IPS'],
+        tools: ['Nmap', 'Metasploit', 'BurpSuite', 'Wireshark', 'Kali Linux', 'Sentinel', 'Wazuh'],
+        languages: ['Python', 'C++', 'C', 'JavaScript', 'SQL', 'HTML', 'CSS']
+      },
+      education: {
+        degree: "B.Tech in CSE - Cyber Security",
+        college: "Sagar Institute of Science & Technology",
+        period: "2022 - Present",
+        cgpa: 7.13
+      }
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "sambhav_mehra_profile.json";
+    link.click();
+    URL.revokeObjectURL(url);
+    toast.success("profile.json downloaded successfully!");
+  };
+
+  const handleMitigate = (logId) => {
+    toast.success("Incident mitigated and firewall updated!");
+    setSocLogs(prev => prev.map(log => {
+      if (log.id === logId) {
+        return {
+          ...log,
+          level: "SUCCESS",
+          msg: "Threat mitigated: Attacker IP banned",
+          color: "text-emerald-400",
+          mitigated: true
+        };
+      }
+      return log;
+    }));
+  };
 
   const [socLogs, setSocLogs] = useState([
     { id: 1, time: "22:54:02", level: "INFO", msg: "Wazuh agent active on DB-Server", color: "text-[var(--matrix-green)]" },
@@ -410,11 +455,20 @@ export default function Home() {
 
                     {/* JSON Output Container */}
                     <motion.div
-                      className="relative bg-black/50 rounded-xl p-3 sm:p-5 border border-white/5 mt-2 shadow-inner"
+                      className="relative bg-black/50 rounded-xl p-3 sm:p-5 border border-white/5 mt-2 shadow-inner group"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 2.5, duration: 0.5 }}
                     >
+                      {/* Download JSON Button */}
+                      <button
+                        onClick={downloadJSON}
+                        title="Download profile.json"
+                        className="absolute top-2.5 right-2.5 p-1.5 rounded-lg border border-white/10 bg-white/5 text-foreground/50 hover:text-[var(--matrix-green)] hover:border-[var(--matrix-green)]/30 hover:bg-[var(--matrix-green)]/5 transition-all cursor-pointer opacity-100 md:opacity-0 group-hover:opacity-100 focus:opacity-100 z-20"
+                      >
+                        <Download size={14} />
+                      </button>
+
                       <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[var(--matrix-green)] to-[var(--cyber-blue)] rounded-l-xl opacity-80" />
 
                       <div className="text-foreground/40 text-xs sm:text-[15px]">{'{\n'}</div>
@@ -648,7 +702,17 @@ export default function Home() {
                           <span className={`font-bold ${log.color} text-[10px] border border-current/25 px-1 rounded scale-[0.9] origin-left uppercase`}>
                             {log.level}
                           </span>
-                          <span className="text-foreground/70 break-words flex-1">{log.msg}</span>
+                          <div className="text-foreground/70 break-words flex-1 flex justify-between items-center gap-2">
+                            <span>{log.msg}</span>
+                            {(log.level === 'ALERT' || log.level === 'WARNING') && !log.mitigated && (
+                              <button 
+                                onClick={() => handleMitigate(log.id)}
+                                className="text-[9px] font-mono font-bold text-red-400 hover:text-emerald-400 border border-red-500/30 hover:border-emerald-500/50 px-1.5 py-0.5 rounded bg-red-500/15 hover:bg-emerald-500/15 cursor-pointer transition-all uppercase shrink-0"
+                              >
+                                Mitigate
+                              </button>
+                            )}
+                          </div>
                         </motion.div>
                       ))}
                     </div>

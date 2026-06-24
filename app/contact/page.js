@@ -84,12 +84,12 @@ export default function Contact() {
                     className="mb-20"
                 >
                     <div className="flex items-baseline gap-4 mb-4">
-                        <span className="text-[var(--matrix-green)] text-2xl font-mono">04.</span>
-                        <h1 className="text-6xl md:text-7xl font-bold text-foreground">
+                        <span className="text-[var(--matrix-green)] text-xl sm:text-2xl font-mono">04.</span>
+                        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-foreground">
                             Get in Touch
                         </h1>
                     </div>
-                    <p className="text-xl text-foreground/60 max-w-2xl ml-16">
+                    <p className="text-lg sm:text-xl text-foreground/60 max-w-2xl ml-10 sm:ml-16">
                         Available for cybersecurity internships, trainee roles, SOC analyst roles, and entry-level penetration testing opportunities.
                     </p>
                 </motion.div>

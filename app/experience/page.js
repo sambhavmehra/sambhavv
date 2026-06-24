@@ -22,12 +22,12 @@ export default function Experience() {
                     className="mb-16"
                 >
                     <div className="flex items-center gap-4 mb-4">
-                        <span className="text-[var(--matrix-green)] text-4xl font-mono">{'{'}</span>
-                        <h1 className="text-6xl md:text-7xl font-bold text-foreground">
+                        <span className="text-[var(--matrix-green)] text-3xl sm:text-6xl md:text-7xl font-mono"></span>
+                        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-foreground">
                             Experience
                         </h1>
                     </div>
-                    <p className="text-xl text-foreground/60 ml-16">
+                    <p className="text-lg sm:text-xl text-foreground/60 ml-10 sm:ml-16">
                         My professional journey and achievements
                     </p>
                 </motion.div>
@@ -56,7 +56,7 @@ export default function Experience() {
                                 viewport={{ once: true }}
                                 variants={fadeIn}
                                 transition={{ delay: index * 0.1 }}
-                                className="p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent hover:border-[var(--matrix-green)]/50 transition-all"
+                                className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent hover:border-[var(--matrix-green)]/50 transition-all"
                             >
                                 <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                                     <div>

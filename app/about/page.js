@@ -431,42 +431,61 @@ export default function About() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--terminal-amber)]/5 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-[var(--matrix-green)]/5 rounded-full blur-3xl" />
 
-            <div className="relative z-10">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
-                <motion.div
-                  className="p-3 rounded-2xl bg-[var(--terminal-amber)]/10 border border-[var(--terminal-amber)]/30"
-                  whileHover={{ rotate: 10, scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <Heart className="text-[var(--terminal-amber)]" size={28} />
-                </motion.div>
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-foreground">What Drives Me</h2>
-                  <p className="text-sm text-foreground/40 mt-1">The passion behind the work</p>
+            <div className="relative z-10 grid lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                  <motion.div
+                    className="p-3 rounded-2xl bg-[var(--terminal-amber)]/10 border border-[var(--terminal-amber)]/30"
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Heart className="text-[var(--terminal-amber)]" size={28} />
+                  </motion.div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-foreground">What Drives Me</h2>
+                    <p className="text-sm text-foreground/40 mt-1">The passion behind the work</p>
+                  </div>
+                </div>
+
+                <p className="text-base sm:text-lg text-foreground/70 leading-relaxed mb-6">
+                  {personalInfo.summary}
+                </p>
+
+                {/* Passion points */}
+                <div className="grid sm:grid-cols-3 gap-3 sm:gap-4">
+                  {[
+                    { icon: Shield, text: "Digital Protection", color: "var(--matrix-green)" },
+                    { icon: Eye, text: "Threat Analysis", color: "var(--cyber-blue)" },
+                    { icon: Zap, text: "Continuous Learning", color: "var(--terminal-amber)" },
+                  ].map(({ icon: PIcon, text, color }, i) => (
+                    <motion.div
+                      key={text}
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5"
+                      whileHover={{ scale: 1.03, borderColor: color + '40' }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <PIcon size={18} style={{ color }} />
+                      <span className="text-sm text-foreground/70 font-medium">{text}</span>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
 
-              <p className="text-base sm:text-lg text-foreground/70 leading-relaxed mb-6">
-                {personalInfo.summary}
-              </p>
-
-              {/* Passion points */}
-              <div className="grid sm:grid-cols-3 gap-3 sm:gap-4">
-                {[
-                  { icon: Shield, text: "Digital Protection", color: "var(--matrix-green)" },
-                  { icon: Eye, text: "Threat Analysis", color: "var(--cyber-blue)" },
-                  { icon: Zap, text: "Continuous Learning", color: "var(--terminal-amber)" },
-                ].map(({ icon: PIcon, text, color }, i) => (
-                  <motion.div
-                    key={text}
-                    className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5"
-                    whileHover={{ scale: 1.03, borderColor: color + '40' }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <PIcon size={18} style={{ color }} />
-                    <span className="text-sm text-foreground/70 font-medium">{text}</span>
-                  </motion.div>
-                ))}
+              {/* Professional Blazer Photo */}
+              <div className="lg:col-span-4 flex justify-center mt-6 lg:mt-0">
+                <div className="relative w-full max-w-[260px] aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 bg-white/5 shadow-2xl group/image">
+                  {/* Glow border effect */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--matrix-green)] to-[var(--cyber-blue)] rounded-2xl blur opacity-25 group-hover/image:opacity-50 transition duration-1000 group-hover/image:duration-200" />
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden bg-background">
+                    <Image
+                      src="/file_0000000087a47207b312bc53a66d3504.png"
+                      alt="Sambhav Mehra - Professional Look"
+                      fill
+                      className="object-cover transition-transform duration-700 ease-in-out group-hover/image:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
