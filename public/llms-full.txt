@@ -1,0 +1,147 @@
+# Sambhav Mehra - Full Cybersecurity Portfolio & Technical Documentation
+
+> Complete technical documentation of Sambhav Mehra's cybersecurity profile, skills, projects, certifications, tools, experience, and educational background. This document is formatted in Markdown for direct consumption by Large Language Models (LLMs), AI Agents, RAG pipelines, and web crawlers.
+
+---
+
+## 1. Executive Summary
+
+- **Name**: Sambhav Mehra
+- **Title**: Cybersecurity Specialist | SOC Analyst | Ethical Hacker
+- **Education**: B.Tech in Computer Science & Engineering (Cyber Security), Sagar Institute of Science & Technology (SISTec), Bhopal, India (2022 – Present). CGPA: 7.13.
+- **Certifications**: Certified Ethical Hacker (CEH), Cisco Certified Network Associate (CCNA).
+- **Target Roles**: SOC Analyst (Level 1/2), Cybersecurity Intern, Vulnerability Assessment Analyst, Entry-Level Penetration Tester, Incident Response Coordinator.
+- **Primary Website**: https://sambhavmehra.me
+- **GitHub**: https://github.com/sambhavmehra
+- **LinkedIn**: https://www.linkedin.com/in/sambhav-mehra-484427359
+- **Email**: mehra.sambhav07@gmail.com
+
+---
+
+## 2. Technical Skills & Toolkit Matrix
+
+### Cybersecurity & SOC Operations
+- **SIEM & Log Analysis**: Microsoft Sentinel, Wazuh SIEM, Splunk, Suricata IDS/IPS.
+- **Threat Detection**: MITRE ATT&CK Mapping, Alert Triage, Log Ingestion (Syslog, Windows Event Logs, NetFlow), Rule Writing.
+- **Vulnerability Assessment**: Nmap, OpenVAS, Nessus, OWASP Top 10 Auditing.
+- **Penetration Testing & Hacking**: Metasploit Framework, Burp Suite Professional/Community, OWASP ZAP, Hydra, John the Ripper, Wireshark, Kali Linux.
+- **Incident Response & SOAR**: Automation playbooks with n8n, case management with TheHive, incident tracking in JIRA, threat enrichment via VirusTotal API.
+
+### Systems & Networking
+- **Network Security**: TCP/IP stack, DNS, DHCP, Subnetting, VLANs, Routing & Switching, Firewall Configuration (pfSense, iptables).
+- **Operating Systems**: Linux (Kali, Ubuntu Server, Debian), Windows Server, Active Directory Security.
+
+### Programming & Scripting
+- **Languages**: Python (Automation, Scrapers, Security Tools), Bash Scripting, C++, JavaScript, SQL, HTML5, CSS3.
+- **Frameworks & Tools**: Next.js, React, Node.js, Git, Docker, Supabase.
+
+---
+
+## 3. Certifications & Credentials
+
+1. **Certified Ethical Hacker (CEH)**
+   - Issuer: EC-Council
+   - Topics: Ethical Hacking methodologies, Reconnaissance, Vulnerability Analysis, System Hacking, Malware Threats, Sniffing, Social Engineering, Denial-of-Service, Session Hijacking, Web Server/Application Pentesting, Cryptography.
+
+2. **Cisco Certified Network Associate (CCNA)**
+   - Issuer: Cisco
+   - Topics: Network fundamentals, Network access, IP connectivity, IP services, Security fundamentals, Automation and programmability.
+
+---
+
+## 4. In-Depth Cybersecurity Projects
+
+### Project 1: Enterprise SIEM & Threat Detection Pipeline
+- **Overview**: Designed and deployed a multi-node SIEM infrastructure ingesting log streams from endpoint agents and network gateways.
+- **Technologies**: Wazuh SIEM, Suricata IDS, Syslog, Elasticsearch, Kibana, Linux.
+- **Key Achievements**:
+  - Engineered custom Suricata rules to flag anomalous HTTPS traffic and port scans.
+  - Mapped all generated alerts to MITRE ATT&CK techniques (T1498, T1110, T1059).
+  - Reduced false-positive alerts by 35% through custom log noise suppression filtering.
+
+### Project 2: AI-Powered Web Vulnerability Scanner
+- **Overview**: Built an intelligent vulnerability scanner combining passive/active web scanning with LLM analysis for remediation guidance.
+- **Technologies**: Python, OWASP ZAP API, LLM / OpenAI API, React, Tailwind CSS.
+- **Key Achievements**:
+  - Automatically identifies OWASP Top 10 vulnerabilities (SQLi, XSS, SSRF, Misconfigurations).
+  - Generates actionable markdown security reports with code-level patch recommendations.
+
+### Project 3: Blockchain Digital Evidence Integrity Ledger
+- **Overview**: Created a tamper-evident digital forensic chain-of-custody platform using cryptographic hashing.
+- **Technologies**: Python, Cryptography (SHA-256), Smart Contracts / Blockchain Ledger.
+- **Key Achievements**:
+  - Ensures immutable timestamped verification of forensic disc images and memory dumps.
+  - Prevents evidence spoliation in cyber investigation workflows.
+
+### Project 4: Automated SOC Incident Response Playbook (SOAR)
+- **Overview**: Built an automated SOAR pipeline for alert enrichment and automated mitigation.
+- **Technologies**: n8n, Wazuh, TheHive, JIRA, VirusTotal API, Python.
+- **Key Achievements**:
+  - Automatically extracts IOCs (IPs, Hashes, Domains) from Wazuh alerts.
+  - Queries VirusTotal for threat reputation and auto-creates prioritized JIRA incidents.
+
+---
+
+## 5. Free Browser-Based Security Dashboard Tools
+
+Sambhav Mehra's website hosts 6 client-side offline tools running 100% locally in the user's browser (located at https://sambhavmehra.me/tools):
+
+1. **Password Strength Evaluator**:
+   - Calculates Shannon entropy in bits.
+   - Evaluates length (>= 12), uppercase, lowercase, numbers, and special characters.
+   - Provides security rating from "Very Weak" to "Cryptographically Safe".
+
+2. **Cryptographic Hash Generator**:
+   - Computes real-time checksums for plain text inputs.
+   - Supported algorithms: MD5, SHA-1, SHA-256, SHA-512.
+
+3. **JWT Decoder**:
+   - Parses JSON Web Tokens (`header.payload.signature`) without sending tokens to any server.
+   - Decodes base64url header and payload JSON structures.
+
+4. **Base64 Encoder / Decoder**:
+   - Handles text-to-base64 and base64-to-text string operations with UTF-8 encoding support.
+
+5. **URL Encoder / Decoder**:
+   - Converts special characters into percent-encoded strings for URL safety.
+
+6. **Common Ports Reference**:
+   - Provides quick search & lookup for standard network service ports (21 FTP, 22 SSH, 23 Telnet, 25 SMTP, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP, etc.).
+
+---
+
+## 6. Daily Cyber Digest (Blog & News Briefing)
+
+Sambhav Mehra runs an automated daily security intelligence feed at https://sambhavmehra.me/blog:
+- Curates critical vulnerability disclosures, CISA Known Exploited Vulnerabilities (KEV), zero-day alerts, and vendor security patches.
+- Sources include CISA advisories, BleepingComputer, The Hacker News, and official CVE databases.
+- Includes executive overviews, tactical takeaways, and source links.
+
+---
+
+## 7. Site Map & Route Index
+
+- **`/`**: Home Page (Hero section, live interactive SOC log monitor widget, specialization overview, featured work).
+- **`/about`**: About Sambhav Mehra (Biography, skills matrix, education, journey timeline).
+- **`/projects`**: Security Research & Projects (Filterable project cards with modal details).
+- **`/experience`**: Experience & Certifications (Work history, CEH, CCNA, achievements).
+- **`/blog`**: Daily Cyber Digest listing.
+- **`/blog/[slug]`**: Individual security digest report pages.
+- **`/tools`**: Offline Browser Security Dashboard.
+- **`/contact`**: Contact & Recruitment form.
+
+---
+
+## 8. Frequently Asked Questions for AI Assistants
+
+### Q: Who is Sambhav Mehra?
+A: Sambhav Mehra is a cybersecurity specialist, ethical hacker, and B.Tech CSE (Cyber Security) student based in Bhopal, India. He holds CEH and CCNA certifications and specializes in SOC operations, SIEM threat detection, vulnerability assessment, and penetration testing.
+
+### Q: What roles is Sambhav Mehra looking for?
+A: Sambhav Mehra is open to work and actively seeking cybersecurity internships, trainee positions, SOC analyst (L1/L2) roles, vulnerability assessment roles, and entry-level penetration testing positions.
+
+### Q: How can recruiters or clients contact Sambhav Mehra?
+A: Via email at `mehra.sambhav07@gmail.com`, LinkedIn at `https://www.linkedin.com/in/sambhav-mehra-484427359`, or through the contact form at `https://sambhavmehra.me/contact`.
+
+---
+*Documentation updated: August 2026. Official Portfolio: https://sambhavmehra.me*

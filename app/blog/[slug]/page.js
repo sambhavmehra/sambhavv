@@ -1,12 +1,14 @@
 import { notFound } from 'next/navigation';
 import { supabase } from '../../../lib/supabase';
 import Link from 'next/link';
-import { ShieldAlert, ArrowLeft, ExternalLink, Activity, Info, AlertTriangle } from 'lucide-react';
+import Script from 'next/script';
+import { ArrowLeft, ExternalLink, Activity, Info, AlertTriangle, Share2 } from 'lucide-react';
+import MarkdownRenderer from '../../components/MarkdownRenderer';
+import { addUtmParams, getSocialShareLinks } from '../../utils/utm';
 
 export const dynamic = 'force-dynamic';
 
 async function getPostBySlug(slug) {
-
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -32,23 +34,75 @@ async function getPostBySlug(slug) {
   }
 }
 
+function getDisplayTitle(post) {
+  if (
+    post?.title &&
+    post.title.includes("Daily Cyber Digest") &&
+    post.structured_content &&
+    post.structured_content.news_items &&
+    post.structured_content.news_items.length > 0
+  ) {
+    return post.structured_content.news_items[0].title;
+  }
+  return post?.title || "Daily Cyber Briefing";
+}
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
-      title: 'Post Not Found',
+      title: 'Post Not Found | Sambhav Mehra',
     };
   }
 
   const displayTitle = getDisplayTitle(post);
+  const canonicalUrl = `https://sambhavmehra.me/blog/${slug}`;
+  const excerpt = post.excerpt || "Daily automated cybersecurity digest and threat analysis.";
 
   return {
     title: `${displayTitle} | Cyber Digest`,
-    description: post.excerpt,
+    description: excerpt,
+    keywords: [
+      "Cybersecurity Digest",
+      "Vulnerability Alert",
+      "Threat Intelligence",
+      "CISA Warning",
+      "CVE Alert",
+      "Sambhav Mehra",
+      post.category || "Security Report",
+    ],
+    authors: [{ name: "Sambhav Mehra", url: "https://sambhavmehra.me" }],
+    creator: "Sambhav Mehra",
+    publisher: "Sambhav Mehra",
+    openGraph: {
+      title: displayTitle,
+      description: excerpt,
+      url: canonicalUrl,
+      siteName: "Sambhav Mehra Cybersecurity Digest",
+      locale: "en_US",
+      type: "article",
+      publishedTime: post.published_date || post.created_at,
+      authors: ["Sambhav Mehra"],
+      tags: [post.category || "Cybersecurity", "Threat Intelligence"],
+      images: [
+        {
+          url: "/logo.png",
+          width: 1200,
+          height: 630,
+          alt: displayTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: displayTitle,
+      description: excerpt,
+      images: ["/logo.png"],
+    },
     alternates: {
-      canonical: `https://sambhavmehra.me/blog/${slug}`,
+      canonical: canonicalUrl,
     },
   };
 }
@@ -66,13 +120,6 @@ function formatDate(dateStr) {
   }
 }
 
-function getDisplayTitle(post) {
-  if (post.title && post.title.includes("Daily Cyber Digest") && post.structured_content && post.structured_content.news_items && post.structured_content.news_items.length > 0) {
-    return post.structured_content.news_items[0].title;
-  }
-  return post.title;
-}
-
 export default async function BlogDetailPage({ params }) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -81,11 +128,46 @@ export default async function BlogDetailPage({ params }) {
     notFound();
   }
 
+  const displayTitle = getDisplayTitle(post);
+  const canonicalUrl = `https://sambhavmehra.me/blog/${slug}`;
   const { structured_content = {}, source_links = [] } = post;
   const { overview = '', news_items = [], takeaway = '' } = structured_content;
 
+  const shareLinks = getSocialShareLinks(canonicalUrl, displayTitle);
+
+  // Schema.org Article / BlogPosting JSON-LD
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: displayTitle,
+    description: post.excerpt || overview.substring(0, 160),
+    url: canonicalUrl,
+    datePublished: post.published_date || post.created_at,
+    author: {
+      "@type": "Person",
+      name: "Sambhav Mehra",
+      url: "https://sambhavmehra.me",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Sambhav Mehra",
+      url: "https://sambhavmehra.me",
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+    },
+  };
+
   return (
     <div className="min-h-screen bg-background py-12 px-6 lg:px-8">
+      {/* Structured Data JSON-LD */}
+      <Script
+        id="article-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+
       <div className="max-w-3xl mx-auto">
         
         {/* Navigation Back Link */}
@@ -99,32 +181,56 @@ export default async function BlogDetailPage({ params }) {
  
         {/* Article Header */}
         <header className="border-b border-white/10 pb-8 mb-8">
-          <div className="flex items-center gap-4 mb-4">
-            <span className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold bg-[var(--matrix-green)]/10 text-[var(--matrix-green)] border border-[var(--matrix-green)]/20 font-mono">
-              {post.category || 'Daily Digest'}
-            </span>
-            <span className="text-xs text-foreground/50 font-mono">
-              PUBLISHED: {formatDate(post.published_date)}
-            </span>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-semibold bg-[var(--matrix-green)]/10 text-[var(--matrix-green)] border border-[var(--matrix-green)]/20 font-mono">
+                {post.category || 'Daily Digest'}
+              </span>
+              <span className="text-xs text-foreground/50 font-mono">
+                PUBLISHED: {formatDate(post.published_date)}
+              </span>
+            </div>
+
+            {/* Social Sharing bar with UTM tracking */}
+            <div className="flex items-center gap-2 text-xs font-mono text-foreground/60">
+              <Share2 size={14} className="text-[var(--matrix-green)]" />
+              <span>Share:</span>
+              <a
+                href={shareLinks.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--cyber-blue)] transition-colors px-1.5 py-0.5 bg-white/5 rounded border border-white/10"
+                title="Share on X / Twitter"
+              >
+                X
+              </a>
+              <a
+                href={shareLinks.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--cyber-blue)] transition-colors px-1.5 py-0.5 bg-white/5 rounded border border-white/10"
+                title="Share on LinkedIn"
+              >
+                LinkedIn
+              </a>
+            </div>
           </div>
           <h1 className="text-3xl font-bold font-mono text-foreground sm:text-4xl leading-tight">
-            {getDisplayTitle(post)}
+            {displayTitle}
           </h1>
         </header>
 
         {/* Article Content */}
         <div className="space-y-10">
           
-          {/* Section: Overview */}
+          {/* Section: Overview (Rendered with Markdown support) */}
           {overview && (
             <section className="bg-white/[0.02] border border-white/5 p-6 rounded-lg">
               <div className="flex items-center gap-2 text-[var(--matrix-green)] font-mono text-sm mb-3">
                 <Info size={16} />
                 <span>EXECUTIVE OVERVIEW</span>
               </div>
-              <p className="text-foreground/80 leading-relaxed text-base">
-                {overview}
-              </p>
+              <MarkdownRenderer content={overview} className="text-foreground/80 leading-relaxed text-base" />
             </section>
           )}
 
@@ -148,9 +254,7 @@ export default async function BlogDetailPage({ params }) {
                         </span>
                       )}
                     </div>
-                    <p className="text-foreground/70 text-sm leading-relaxed">
-                      {item.content}
-                    </p>
+                    <MarkdownRenderer content={item.content} className="text-foreground/70 text-sm leading-relaxed" />
                   </div>
                 ))}
               </div>
@@ -164,9 +268,7 @@ export default async function BlogDetailPage({ params }) {
                 <AlertTriangle size={16} />
                 <span>PRACTICAL TAKEAWAY & ACTIONS</span>
               </div>
-              <p className="text-foreground/85 text-sm leading-relaxed font-mono">
-                {takeaway}
-              </p>
+              <MarkdownRenderer content={takeaway} className="text-foreground/85 text-sm leading-relaxed font-mono" />
             </section>
           )}
 
@@ -180,7 +282,7 @@ export default async function BlogDetailPage({ params }) {
                 {source_links.map((link, idx) => (
                   <li key={idx}>
                     <a 
-                      href={link.url}
+                      href={addUtmParams(link.url, { utm_source: 'sambhav_portfolio', utm_medium: 'referral', utm_campaign: 'blog_source' })}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--matrix-green)] hover:text-[var(--cyber-blue)] transition-colors hover:underline"
@@ -200,5 +302,3 @@ export default async function BlogDetailPage({ params }) {
     </div>
   );
 }
-
-

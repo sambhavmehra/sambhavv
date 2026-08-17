@@ -1,0 +1,52 @@
+# Sambhav Mehra - Cybersecurity Analyst & Ethical Hacker Portfolio
+
+> Comprehensive overview of Sambhav Mehra's cybersecurity expertise, certifications, projects, tools, and background. Optimized for AI assistants, LLM agents, search engines, and RAG pipelines.
+
+## About Sambhav Mehra
+- **Full Name**: Sambhav Mehra
+- **Professional Role**: Cybersecurity Analyst | SOC Analyst Aspirant | Ethical Hacker
+- **Education**: B.Tech in Computer Science Engineering (Cyber Security), Sagar Institute of Science & Technology (2022–Present, CGPA: 7.13)
+- **Location**: Bhopal, India
+- **Status**: Actively seeking cybersecurity internships, trainee positions, SOC analyst roles, vulnerability assessment roles, and entry-level penetration testing opportunities.
+- **Website**: https://sambhavmehra.me
+- **GitHub**: https://github.com/sambhavmehra
+- **LinkedIn**: https://www.linkedin.com/in/sambhav-mehra-484427359
+
+## Certifications
+- **Certified Ethical Hacker (CEH)**: Hands-on expertise in threat analysis, network scanning, vulnerability assessment, web security, and exploitation techniques.
+- **Cisco Certified Network Associate (CCNA)**: Comprehensive knowledge of routing, switching, TCP/IP protocols, subnetting, firewall rules, and Wireshark packet analysis.
+
+## Key Technical Skills
+- **Security Operations & SIEM**: Microsoft Sentinel, Wazuh SIEM, Suricata IDS/IPS, Splunk, Log Ingestion, Alert Triage, Incident Response, MITRE ATT&CK Framework.
+- **Ethical Hacking & Penetration Testing**: Nmap, Metasploit, Burp Suite, OWASP ZAP, Wireshark, Kali Linux, Vulnerability Assessment, Web App Security.
+- **Programming & Scripting**: Python, Bash Scripting, C++, JavaScript, SQL, HTML, CSS.
+- **Automation & SOAR**: n8n, TheHive, JIRA Incident Management, VirusTotal API Integration.
+
+## Featured Cybersecurity Projects
+1. **Enterprise SIEM & Threat Detection Pipeline**: Log ingestion and alert correlation platform built with Wazuh and Suricata, fully mapped to the MITRE ATT&CK framework.
+2. **AI-Powered Vulnerability Scanner**: Intelligent web application vulnerability assessment tool powered by LLM models for automated security auditing and patch recommendations.
+3. **Blockchain Digital Evidence Integrity Ledger**: Cryptographic evidence chain for digital forensics preserving hash integrity of forensic artifacts.
+4. **Automated SOC Incident Response Playbook**: SOAR automation workflow linking Wazuh alert triggers, n8n automation, VirusTotal IOC enrichment, and JIRA ticket creation.
+
+## Free Offline Browser Security Tools
+Available on https://sambhavmehra.me/tools (runs 100% locally in browser with zero server data transfer):
+- **Password Strength Evaluator**: Shannon entropy calculation & NIST requirement checklist.
+- **Cryptographic Hash Generator**: Real-time MD5, SHA-1, SHA-256, SHA-512 checksum calculator.
+- **JWT Decoder**: Header and payload decoder for JSON Web Tokens.
+- **Base64 Encoder / Decoder**: Unicode-safe Base64 conversion tool.
+- **URL Encoder / Decoder**: Safe URL string transformation tool.
+- **Common Ports Reference**: Quick lookup table for standard network service ports (SSH, HTTP, HTTPS, RDP, DNS, etc.).
+
+## Direct Links & Resources
+- [Home Page](https://sambhavmehra.me/): Hero overview, live SOC monitoring widget, specialization highlights.
+- [About Me](https://sambhavmehra.me/about): Detailed bio, background, skills matrix, and journey timeline.
+- [Projects](https://sambhavmehra.me/projects): Security research projects with deep-dive technical specs.
+- [Experience](https://sambhavmehra.me/experience): Work history, certifications (CEH, CCNA), and achievements.
+- [Daily Cyber Digest](https://sambhavmehra.me/blog): Daily automated security intelligence briefings summarizing CISA alerts and zero-days.
+- [Security Tools](https://sambhavmehra.me/tools): Browser-based offline cybersecurity utility dashboard.
+- [Contact Me](https://sambhavmehra.me/contact): Direct recruitment inquiry form and contact details.
+
+## Contact Details
+- **Email**: mehra.sambhav07@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/sambhav-mehra-484427359
+- **GitHub**: https://github.com/sambhavmehra
